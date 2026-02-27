@@ -1,11 +1,5 @@
 <?php
-try {
-    $db = new PDO('mysql:host=localhost;dbname=nexa;charset=utf8;', 'root', 'Evanestbg-2013');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion à la base : " . $e->getMessage());
-}
-
+require __DIR__ . '/../config.php';
 $errors = [];
 
 if (isset($_POST['submit'])) {
