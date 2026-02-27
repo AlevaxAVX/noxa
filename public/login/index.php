@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 try {
     $db = new PDO('mysql:host=localhost;dbname=nexa;charset=utf8;', 'root', 'Evanestbg-2013');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
