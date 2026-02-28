@@ -25,10 +25,11 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexa - Connexion</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="big.png" type="image/x-icon">
 </head>
 <body>
     <header>
-        <h1 id="title">Nexa</h1>
+        <img src="big.png" alt="logo">
         <ul id="list">
             <li id="buttona"><a href="/login">Se Connecter</a></li>
             <li id="buttonb"><a href="/register">S'Inscrire</a></li>

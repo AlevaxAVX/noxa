@@ -10,10 +10,11 @@ if (!$_SESSION['pass']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexa</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="big.png" type="image/x-icon">
 </head>
 <body>
     <header>
-        <h1 id="title">Nexa</h1>
+        <img src="big.png" alt="logo">
         <ul id="list">
             <li id="buttona"><a href="/">Home</a></li>
             <li id="buttonb"><a href="/logout">Se Déconnecter</a></li>

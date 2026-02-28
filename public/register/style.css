@@ -9,8 +9,9 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    padding: 1%;
-    color: white;
+    align-items: center;
+    height: 50px;      /* ← plus petit */
+    padding: 15px;
     background-color: #111;
 }
 
@@ -20,25 +21,38 @@ header {
 
 #list {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
     list-style: none;
     margin: 0;
 }
 
 a {
-    color: white;
+    text-decoration: none;  /* enlève le soulignement */
     color: black;
+    font-size: 16px;        /* texte plus grand */
+    font-weight: 500;
 }
 
-#buttona {
-    background-color: white;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-}
-
+#buttona,
 #buttonb {
     background-color: white;
-    padding: 10px;
+    height: 50px;
+    width: 130px;          /* même largeur */
     border-radius: 5px;
+
+    display: flex;
+    justify-content: center; /* centre horizontal */
+    align-items: center;     /* centre vertical */
+
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+header img {
+    height: 100%;   /* même hauteur que le header */
+    width: auto;    /* garde les proportions */
 }
