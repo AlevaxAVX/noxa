@@ -7,8 +7,9 @@ $success = '';
 if (isset($_POST["submit"])) {
     $mail = trim($_POST["mail"] ?? '');
     $pass = trim($_POST["pass"] ?? '');
+    $pseudo = trim($_POST['pseudo'] ??'');
 
-    if (empty($mail) || empty($pass)) {
+    if (empty($mail) || empty($pass) || empty($pseudo)) {
         $errors[] = 'Veuillez compléter tous les champs.';
     } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
         $errors[] = 'Adresse e-mail invalide.';
@@ -19,15 +20,16 @@ if (isset($_POST["submit"])) {
             $errors[] = 'Cette adresse e-mail est déjà utilisée.';
         } else {
             $hash = sha1($pass);
-            $insertUser = $db->prepare('INSERT INTO users(mail, pass) VALUES (?, ?)');
-            $insertUser->execute([$mail, $hash]);
+            $insertUser = $db->prepare('INSERT INTO users(pseudo, mail, pass) VALUES (?, ?, ?)');
+            $insertUser->execute([$pseudo, $mail, $hash]);
 
-            $getUser = $db->prepare('SELECT * FROM users WHERE mail = ? AND pass = ?');
-            $getUser->execute([$mail, $hash]);
+            $getUser = $db->prepare('SELECT * FROM users WHERE pseudo = ? AND mail = ? AND pass = ?');
+            $getUser->execute([$pseudo, $mail, $hash]);
             $user = $getUser->fetch(PDO::FETCH_ASSOC);
             if ($user) {
                 $_SESSION['mail'] = $user['mail'];
                 $_SESSION['id'] = $user['id'];
+                $_SESSION['pseudo'] = $user['pseudo'];
                 header('Location: /web');
                 exit;
             } else {
@@ -55,9 +57,11 @@ if (isset($_POST["submit"])) {
         </ul>
     </header>
     <form action="" method="post" align="center">
-        <input type="email" name="mail" autocomplete="off" value="<?= htmlspecialchars($_POST['mail'] ?? '') ?>" required>
+        <input type="email" name="mail" placeholder="Adresse E-Mail" autocomplete="off" value="<?= htmlspecialchars($_POST['mail'] ?? '') ?>" required>
         <br/>
-        <input type="password" autocomplete="off" name="pass" required>
+        <input type="password" autocomplete="off" name="pass" placeholder="Mot de Passe" required>
+        <br/>
+        <input type="text" name="pseudo" placeholder="Pseudo" value="<?= htmlspecialchars($_POST['mail'] ?? '') ?>" required>
         <br/>
         <input type="submit" name="submit" value="Inscription">
     </form>
