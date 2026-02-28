@@ -131,13 +131,12 @@ main {
 /* Chat form fixé en bas avec 15% à gauche */
 #chat-form {
     position: fixed;
-    bottom: 0;
+    bottom: 5px;
     left: 15%;           /* espace vide à gauche */
     width: 85%;          /* largeur restante */
     display: flex;
     gap: 10px;
     padding: 10px;
-    border-top: 1px solid #ccc;
     background-color: #fff;
     box-sizing: border-box;
     z-index: 2000;
@@ -174,10 +173,10 @@ main {
 /* Conteneur du chat */
 #chat-container {
     position: fixed;
-    bottom: 70px;       /* au-dessus du formulaire */
+    bottom: 90px;       /* au-dessus du formulaire */
     left: 15%;          /* même marge que le formulaire */
-    width: 85%;
-    max-height: calc(100vh - 70px - 80px); /* espace pour header + formulaire */
+    width: 83%;
+    max-height: calc(100vh - 90px - 100px); /* espace pour header + formulaire */
     display: flex;
     flex-direction: column;
     background-color: #f9f9f9;
@@ -185,36 +184,4 @@ main {
     border-radius: 10px;
     overflow-y: auto;
     padding: 10px;
-}
-/* Chat form fixé en bas avec 15% d’espace à gauche */
-#chat-form {
-    position: fixed;
-    bottom: 0;
-    left: 15%;
-    width: calc(100% - 15%); /* largeur = total - marge gauche */
-    display: flex;
-    gap: 10px;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    background-color: #fff;
-    box-sizing: border-box;
-    z-index: 2000;
-    height: 70px;
-}
-
-/* Conteneur du chat */
-#chat-container {
-    position: fixed;
-    bottom: 70px; /* au-dessus du formulaire */
-    left: 15%;
-    width: calc(100% - 15%);
-    max-height: calc(100vh - 70px - 80px); /* header + formulaire */
-    display: flex;
-    flex-direction: column;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow-y: auto;
-    padding: 10px;
-    box-sizing: border-box; /* pour inclure padding et border */
 }
