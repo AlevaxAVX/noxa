@@ -1,19 +1,15 @@
 <?php
-require __DIR__ . '/vendor/autoload.php'; // Charger Composer
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load(); // Lire les variables du fichier .env
-
-session_start();
+$host = 'ton_host_supabase';
+$port = '5432';
+$db   = 'noxa_db';
+$user = 'ton_user';
+$pass = 'ton_motdepasse';
+$dsn = "pgsql:host=$host;port=$port;dbname=$db;";
 
 try {
-    $db = new PDO(
-        'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'] . ';charset=utf8;',
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS']
-    );
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    echo "Connexion réussie !";
 } catch (PDOException $e) {
-    die("Erreur de connexion à la base : " . $e->getMessage());
+    die("Erreur de connexion : " . $e->getMessage());
 }
 ?>
