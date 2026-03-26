@@ -1,7 +1,7 @@
 <?php
-$host = 'ton_host_supabase';
+$host = 'https://uldldhzwsijrfvwbdjvv.supabase.co';
 $port = '5432';
-$db   = 'noxa_db';
+$db   = 'Noxa';
 $user = 'ton_user';
 $pass = 'ton_motdepasse';
 $dsn = "pgsql:host=$host;port=$port;dbname=$db;";
