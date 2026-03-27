@@ -1,24 +1,19 @@
+
 FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
-    unzip \
+    libpq-dev \
     git \
-    && rm -rf /var/lib/apt/lists/*
+    unzip \
+    && docker-php-ext-install pdo_pgsql pdo mysqli
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
-    && php -r "unlink('composer-setup.php');"
+COPY . /var/www/html/
 
-COPY . /var/www/html
+RUN a2enmod rewrite
 
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
-
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
-
-RUN cd /var/www/html && composer install --no-dev --optimize-autoloader
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
 EXPOSE 80
+
+CMD ["apache2-foreground"]
